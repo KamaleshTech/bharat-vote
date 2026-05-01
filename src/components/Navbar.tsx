@@ -38,6 +38,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
+                    aria-current={isActive ? 'page' : undefined}
                     className="relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 group"
                   >
                     <span className={`flex items-center gap-2 z-10 relative ${isActive ? 'text-white' : 'text-gray-700 dark:text-gray-300 group-hover:text-saffron'}`}>
@@ -59,9 +60,11 @@ export default function Navbar() {
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
             >
-              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+              {isOpen ? <X className="block h-6 w-6" aria-hidden="true" /> : <Menu className="block h-6 w-6" aria-hidden="true" />}
             </button>
           </div>
         </div>

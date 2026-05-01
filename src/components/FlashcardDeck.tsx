@@ -35,8 +35,13 @@ export default function FlashcardDeck() {
 
       {/* Flashcard Container */}
       <div 
-        className="relative w-full h-80 sm:h-96 cursor-pointer group perspective-1000"
+        className="relative w-full h-80 sm:h-96 cursor-pointer group perspective-1000 focus:outline-none focus:ring-2 focus:ring-saffron rounded-2xl"
         onClick={handleFlip}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleFlip(); } }}
+        tabIndex={0}
+        role="button"
+        aria-label={`Flashcard: ${flashcards[currentIndex].term}. Press Enter or Space to see definition.`}
+        aria-live="polite"
       >
         <motion.div
           className="w-full h-full relative preserve-3d transition-transform duration-500 ease-in-out"
@@ -73,9 +78,10 @@ export default function FlashcardDeck() {
       <div className="flex items-center justify-between w-full mt-8 px-4">
         <button 
           onClick={handlePrev}
+          aria-label="Previous flashcard"
           className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow text-gray-600 dark:text-gray-300 hover:text-saffron"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={24} aria-hidden="true" />
         </button>
         <div className="flex space-x-2">
           {flashcards.map((_, idx) => (
@@ -87,9 +93,10 @@ export default function FlashcardDeck() {
         </div>
         <button 
           onClick={handleNext}
+          aria-label="Next flashcard"
           className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow text-gray-600 dark:text-gray-300 hover:text-india-green"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={24} aria-hidden="true" />
         </button>
       </div>
       

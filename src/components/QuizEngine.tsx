@@ -99,6 +99,8 @@ export default function QuizEngine() {
                     key={index}
                     disabled={isAnswered}
                     onClick={() => handleOptionClick(option)}
+                    aria-label={`Option ${index + 1}: ${option}`}
+                    aria-pressed={isSelected}
                     className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 flex justify-between items-center ${
                       showCorrect
                         ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300'
@@ -110,8 +112,8 @@ export default function QuizEngine() {
                     }`}
                   >
                     <span>{option}</span>
-                    {showCorrect && <CheckCircle2 className="text-green-500" size={20} />}
-                    {showIncorrect && <XCircle className="text-red-500" size={20} />}
+                    {showCorrect && <CheckCircle2 className="text-green-500" size={20} aria-hidden="true" />}
+                    {showIncorrect && <XCircle className="text-red-500" size={20} aria-hidden="true" />}
                   </button>
                 );
               })}
@@ -123,6 +125,8 @@ export default function QuizEngine() {
                   initial={{ opacity: 0, height: 0, marginTop: 0 }}
                   animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
                   exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                  role="alert"
+                  aria-live="polite"
                   className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800"
                 >
                   <p className="text-sm text-blue-800 dark:text-blue-200">
@@ -131,10 +135,11 @@ export default function QuizEngine() {
                   <div className="mt-5 flex justify-end">
                     <button
                       onClick={handleNextQuestion}
+                      aria-label={currentQuestionIndex < quizQuestions.length - 1 ? 'Go to next question' : 'Finish and see results'}
                       className="btn-primary flex items-center space-x-1 px-5 py-2.5 rounded-xl font-medium"
                     >
                       <span>{currentQuestionIndex < quizQuestions.length - 1 ? 'Next Question' : 'See Results'}</span>
-                      <ChevronRight size={18} />
+                      <ChevronRight size={18} aria-hidden="true" />
                     </button>
                   </div>
                 </motion.div>

@@ -155,7 +155,12 @@ export default function InteractiveChat() {
           </div>
         </div>
 
-        <div className="flex-grow p-6 overflow-y-auto space-y-4">
+        <div 
+          className="flex-grow p-6 overflow-y-auto space-y-4"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
           <AnimatePresence initial={false}>
             {messages.map((msg) => (
               <motion.div
@@ -168,13 +173,14 @@ export default function InteractiveChat() {
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mb-1 shadow-sm
                     ${msg.sender === 'user' ? 'ml-2 bg-saffron' : 'mr-2 bg-india-green'}
                   `}>
-                    {msg.sender === 'user' ? <User size={16} className="text-white" /> : <Bot size={16} className="text-white" />}
+                    {msg.sender === 'user' ? <User size={16} className="text-white" aria-hidden="true" /> : <Bot size={16} className="text-white" aria-hidden="true" />}
                   </div>
                   <div className={`p-4 rounded-2xl shadow-sm leading-relaxed ${
                     msg.sender === 'user' 
                       ? 'bg-gradient-to-br from-saffron to-orange-500 text-white rounded-br-sm' 
                       : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-sm'
                   }`}>
+                    <span className="sr-only">{msg.sender === 'user' ? 'You said:' : 'AI Assistant said:'}</span>
                     {msg.text}
                   </div>
                 </div>
@@ -187,6 +193,8 @@ export default function InteractiveChat() {
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               className="flex justify-start"
+              aria-busy="true"
+              aria-label="AI is typing"
             >
                <div className="flex items-end">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-india-green flex items-center justify-center mr-2 shadow-sm">
@@ -216,9 +224,10 @@ export default function InteractiveChat() {
             <button
               type="submit"
               disabled={!inputValue.trim() || isTyping}
+              aria-label="Send message"
               className="p-3 bg-gradient-to-r from-saffron to-india-green text-white rounded-xl shadow-md disabled:opacity-50 hover:shadow-lg transition-all"
             >
-              <Send size={20} />
+              <Send size={20} aria-hidden="true" />
             </button>
           </form>
         </div>
