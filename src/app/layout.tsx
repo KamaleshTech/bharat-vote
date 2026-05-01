@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "BharatVote | Interactive Election Portal",
   description: "An interactive guide to understanding the Indian Election Process.",
+  manifest: "/manifest.json",
   verification: {
     google: "google-site-verification-id", // Simulated Google Search Console verification
   },

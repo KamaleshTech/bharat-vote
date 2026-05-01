@@ -54,8 +54,11 @@ export default function InteractiveChat() {
   }, [messages, isTyping]);
 
   const handleAskQuestion = (q: {question: string, answer: string}) => {
-    // Add user message
-    const userMsg: Message = { id: Date.now().toString(), sender: 'user', text: q.question };
+    const userMsg: Message = { 
+      id: `user-${messages.length}-${Math.random().toString(36).substring(2, 9)}`, 
+      sender: 'user', 
+      text: q.question 
+    };
     setMessages(prev => [...prev, userMsg]);
     
     // Simulate typing
@@ -63,8 +66,11 @@ export default function InteractiveChat() {
     
     setTimeout(() => {
       setIsTyping(false);
-      // Add bot response
-      const botMsg: Message = { id: (Date.now() + 1).toString(), sender: 'bot', text: q.answer };
+      const botMsg: Message = { 
+        id: `bot-${messages.length}-${Math.random().toString(36).substring(2, 9)}`, 
+        sender: 'bot', 
+        text: q.answer 
+      };
       setMessages(prev => [...prev, botMsg]);
     }, 1000);
   };
@@ -72,8 +78,11 @@ export default function InteractiveChat() {
   const handleCustomSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-
-    const userMsg: Message = { id: Date.now().toString(), sender: 'user', text: inputValue };
+    const userMsg: Message = { 
+      id: `user-custom-${messages.length}-${Math.random().toString(36).substring(2, 9)}`, 
+      sender: 'user', 
+      text: inputValue 
+    };
     setMessages(prev => [...prev, userMsg]);
     setInputValue("");
     setIsTyping(true);
@@ -110,9 +119,14 @@ export default function InteractiveChat() {
         responseText = "VVPAT (Voter Verifiable Paper Audit Trail) is a system that prints a paper slip when a vote is cast, allowing the voter to verify their vote before it drops into a sealed box.";
       }
 
-      const botMsg: Message = { id: (Date.now() + 1).toString(), sender: 'bot', text: responseText };
+      setIsTyping(false);
+      const botMsg: Message = { 
+        id: `bot-custom-${messages.length}-${Math.random().toString(36).substring(2, 9)}`, 
+        sender: 'bot', 
+        text: responseText 
+      };
       setMessages(prev => [...prev, botMsg]);
-    }, 1000);
+    }, 1500);
   };
 
   return (

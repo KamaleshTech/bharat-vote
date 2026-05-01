@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bharat-vote-517202348101.us-central1.run.app/sitemap.xml

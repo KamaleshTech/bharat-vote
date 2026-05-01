@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Map, Layers, HelpCircle, MessageSquare, ArrowRight } from 'lucide-react';
 import VoterFeedback from '@/components/VoterFeedback';
+import MapLocator from '@/components/MapLocator';
 
 export default function Home() {
   const features = [
@@ -58,7 +59,19 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
             {features.map((feature, idx) => (
-              <Link key={idx} href={feature.href} className="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+              <Link 
+                key={idx} 
+                href={feature.href} 
+                onClick={() => {
+                  // Advanced Google Analytics Event Tracking
+                  if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'feature_click', {
+                      'feature_name': feature.title
+                    });
+                  }
+                }}
+                className="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300"
+              >
                 <div className={`w-14 h-14 rounded-xl mb-6 flex items-center justify-center bg-gradient-to-br ${feature.color}`}>
                   {feature.icon}
                 </div>
@@ -72,6 +85,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Google Maps Service - Polling Station Locator */}
+      <MapLocator />
 
       {/* Feedback Section - Demonstrating Google Services Adoption */}
       <VoterFeedback />

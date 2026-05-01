@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Menu, X, CheckSquare, Layers, HelpCircle, Map, MessageSquare } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
+import GoogleSignIn from './GoogleSignIn';
 
 const navLinks = [
   { name: 'Home', href: '/', icon: <CheckSquare size={18} /> },
@@ -22,14 +24,20 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 glass-panel border-b border-white/20 dark:border-gray-800/50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex-shrink-0 flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-3">
-              <img src="/eci-logo.png" alt="ECI Logo" className="w-10 h-10 object-contain drop-shadow-md" />
-              <span className="font-extrabold text-2xl tracking-tight text-gray-900 dark:text-white cursor-pointer hidden sm:block">
-                Bharat<span className="gradient-text">Vote</span>
-              </span>
-            </Link>
-          </div>
+          <Link href="/" className="flex-shrink-0 flex items-center group">
+            <div className="relative w-10 h-10 mr-3 overflow-hidden rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Image 
+                src="/eci-logo.png" 
+                alt="Election Commission of India Logo" 
+                width={40}
+                height={40}
+                className="object-cover"
+              />
+            </div>
+            <span className="font-extrabold text-2xl tracking-tight text-gray-900 dark:text-white cursor-pointer hidden sm:block">
+              Bharat<span className="gradient-text">Vote</span>
+            </span>
+          </Link>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-1">
               {navLinks.map((link) => {
@@ -57,7 +65,11 @@ export default function Navbar() {
               })}
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="hidden md:flex items-center gap-4">
+            <GoogleSignIn />
+          </div>
+          <div className="-mr-2 flex md:hidden items-center gap-2">
+            <GoogleSignIn />
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close menu" : "Open menu"}

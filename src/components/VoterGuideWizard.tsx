@@ -30,7 +30,7 @@ const wizardSteps = [
         <h3 className="text-xl font-semibold text-gray-800 dark:text-white">Registering as a Voter</h3>
         <p className="text-gray-600 dark:text-gray-300">You can register online or offline. The easiest way is online:</p>
         <ol className="list-decimal pl-5 space-y-2 text-gray-600 dark:text-gray-300">
-          <li>Visit the <strong>National Voters' Service Portal (NVSP)</strong> or use the <strong>Voter Helpline App</strong>.</li>
+          <li>Visit the <strong>National Voters&apos; Service Portal (NVSP)</strong> or use the <strong>Voter Helpline App</strong>.</li>
           <li>Fill out <strong>Form 6</strong> for new voter registration.</li>
           <li>Upload required documents: Passport size photograph, Identity Proof, and Address Proof.</li>
           <li>Submit the form. You will receive a reference ID to track your application status.</li>

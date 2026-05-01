@@ -1,4 +1,37 @@
-export const quizQuestions = [
+/**
+ * Represents a multiple-choice question for the election quiz.
+ */
+export interface QuizQuestion {
+  id: number;
+  question: string;
+  options: string[];
+  answer: string;
+  explanation: string;
+}
+
+/**
+ * Represents an educational flashcard with a term and its definition.
+ */
+export interface Flashcard {
+  id: number;
+  term: string;
+  definition: string;
+}
+
+/**
+ * Represents a key event in the election process timeline.
+ */
+export interface TimelineEvent {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+/**
+ * Collection of quiz questions for the Knowledge Check module.
+ */
+export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
     question: "What is the minimum age to be eligible to vote in India?",
@@ -50,7 +83,10 @@ export const quizQuestions = [
   }
 ];
 
-export const flashcards = [
+/**
+ * Collection of flashcards for the terminology mastery module.
+ */
+export const flashcards: Flashcard[] = [
   {
     id: 1,
     term: "Model Code of Conduct (MCC)",
@@ -103,7 +139,10 @@ export const flashcards = [
   }
 ];
 
-export const timelineEvents = [
+/**
+ * Collection of timeline events for the electoral process overview.
+ */
+export const timelineEvents: TimelineEvent[] = [
   {
     id: 1,
     title: "Announcement of Election Schedule",
