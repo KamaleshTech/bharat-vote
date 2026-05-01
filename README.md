@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗳️ BharatVote | Interactive Election Portal
 
-## Getting Started
+BharatVote is a premium, state-of-the-art web application designed to educate and empower Indian citizens about the electoral process. It combines modern UI/UX with interactive educational tools and an AI-driven assistant to provide a comprehensive guide to the world's largest democracy.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Interactive Voter Journey**: A step-by-step guide through the electoral process, from registration to casting a vote.
+- **AI-Powered Election Assistant**: A specialized AI interface that answers complex queries about government formation, constitutional procedures, and electoral laws.
+- **Educational Flashcards**: Master electoral terminology (EVM, VVPAT, MCC, etc.) through high-quality interactive cards.
+- **Knowledge Quizzes**: Test your understanding of the democratic process with gamified assessments.
+- **Premium Design System**: A responsive, high-performance interface featuring Indian flag-inspired aesthetics, smooth animations (Framer Motion), and glassmorphism effects.
+
+## 🏗️ Architecture & Workflow
+
+```mermaid
+graph TD
+    User([User]) -->|Interacts| UI[Next.js Frontend]
+    UI -->|Navigate| Router{App Router}
+    
+    Router -->|Learning| Journey[Voter Journey Wizard]
+    Router -->|Reference| Flashcards[Interactive Flashcards]
+    Router -->|Assessment| Quiz[Quiz Engine]
+    Router -->|Support| AI[Election Expert AI]
+    
+    AI -->|Fallback| Logic[Context-Aware Response Engine]
+    
+    UI -->|Deployed to| CloudRun[Google Cloud Run]
+    CloudRun -->|Build Source| CloudBuild[Google Cloud Build]
+    CloudBuild -->|Store Image| AR[Artifact Registry]
+    
+    UI -->|Source Control| GitHub[GitHub Repo]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: TailwindCSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Deployment**: Google Cloud Run
+- **CI/CD**: Google Cloud Build & Artifact Registry
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deployment Info
 
-## Learn More
+The project is containerized using Docker and deployed to Google Cloud Run.
 
-To learn more about Next.js, take a look at the following resources:
+- **Production URL**: [https://bharat-vote-517202348101.us-central1.run.app](https://bharat-vote-517202348101.us-central1.run.app)
+- **Region**: us-central1
+- **Project ID**: prompt1-494714
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📖 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+First, install dependencies:
+```bash
+npm install
+```
 
-## Deploy on Vercel
+Run the development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Build for production:
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Built to educate and empower. Not officially affiliated with the Election Commission of India.*
