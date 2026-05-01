@@ -110,6 +110,8 @@ export default function VoterGuideWizard() {
             <button
               key={step.id}
               onClick={() => setCurrentStep(index)}
+              aria-label={`Step ${index + 1}: ${step.title}`}
+              aria-current={index === currentStep ? 'step' : undefined}
               className={`relative flex flex-col items-center group bg-white dark:bg-gray-900 ${
                 index <= currentStep ? 'text-saffron' : 'text-gray-400 dark:text-gray-500'
               }`}
@@ -151,6 +153,7 @@ export default function VoterGuideWizard() {
           <button
             onClick={prevStep}
             disabled={currentStep === 0}
+            aria-label="Previous step"
             className={`px-6 py-2.5 rounded-xl font-medium ${
               currentStep === 0 
                 ? 'opacity-0 cursor-default pointer-events-none' 
@@ -162,6 +165,7 @@ export default function VoterGuideWizard() {
           <button
             onClick={nextStep}
             disabled={currentStep === wizardSteps.length - 1}
+            aria-label="Next step"
             className={`px-6 py-2.5 rounded-xl font-medium ${
               currentStep === wizardSteps.length - 1
                 ? 'opacity-0 cursor-default pointer-events-none'
@@ -169,7 +173,7 @@ export default function VoterGuideWizard() {
             }`}
           >
             <span>Next Step</span>
-            <ArrowRight size={18} />
+            <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>
       </div>

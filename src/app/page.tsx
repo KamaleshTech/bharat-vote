@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Map, Layers, HelpCircle, MessageSquare, ArrowRight } from 'lucide-react';
+import VoterFeedback from '@/components/VoterFeedback';
 
 export default function Home() {
   const features = [
@@ -71,6 +72,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Feedback Section - Demonstrating Google Services Adoption */}
+      <VoterFeedback />
 
       {/* Footer */}
       <footer className="w-full bg-gray-900 text-white py-12 text-center">
